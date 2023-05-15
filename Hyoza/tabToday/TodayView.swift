@@ -22,6 +22,7 @@ struct TodayView: View {
     @State var selectedQuestion: Question? = nil
     @State var openDegree: Double = 90
     @State var closedDegree: Double = 0
+    @State private var answer: Answer? = nil
     
     @Binding var continuousDayCount: Int
     @Binding var continueText: String?
@@ -53,7 +54,7 @@ struct TodayView: View {
                     ZStack {
                         if isQuestionBoxViewTapped {
                             CardView(cornerRadius: 16, shadowColor: .black.opacity(0.05), shadowRadius: 12) {
-                                QuestionCardView(openDegree: $openDegree, closedDegree: $closedDegree, easyQuestions: $easyQuestions, hardQuestions: $hardQuestions, selectedQuestion: $selectedQuestion)
+                                QuestionCardView(openDegree: $openDegree, closedDegree: $closedDegree, easyQuestions: $easyQuestions, hardQuestions: $hardQuestions, selectedQuestion: $selectedQuestion, answer: $answer)
                             }
                         } else {
                             CardView(cornerRadius: 16, shadowColor: .black.opacity(0.05), shadowRadius: 12) {
@@ -69,12 +70,14 @@ struct TodayView: View {
                 .padding(20)
             .background(Color.backGroundWhite.ignoresSafeArea())
             .onAppear() {
-                if let _selectedQuestion = PersistenceController.shared.selectedQuestion,
-                   selectedQuestion == nil {
+                if let _selectedQuestion = PersistenceController.shared.selectedQuestion {
+                    print(#function, _selectedQuestion)
                     selectedQuestion = _selectedQuestion
                     closedDegree = -90
                     openDegree = 0
                     isQuestionBoxViewTapped.toggle()
+                } else if let _answer = selectedQuestion?.answer {
+                    answer = _answer
                 }
             }
         }

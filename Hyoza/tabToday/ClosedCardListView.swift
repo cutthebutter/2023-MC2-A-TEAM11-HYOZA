@@ -28,6 +28,8 @@ struct ClosedCardListView: View {
                     closedCardView(question: easyQuestions[0], questionNumber: 1)
                     closedCardView(question: hardQuestions[0], questionNumber: 2)
                     closedCardView(question: easyQuestions[1], questionNumber: 3)
+                } else {
+                    Text("easy, hard Qeustions fetch 안됨")
                 }
             }
             .padding(20)
