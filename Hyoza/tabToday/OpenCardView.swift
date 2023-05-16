@@ -53,10 +53,9 @@ struct NoAnswerView: View {
                     NavigationLink {
                         QnAView(data: selectedQuestion, isEditing: true)
                     } label: {
-                        ButtonView(content: "답변하기") {
-                            print("hehe")
-                        }
-                        .disabled(true)
+                        ButtonView(content: "답변하기")
+                            .padding(.horizontal, 20)
+                            .padding(.bottom, 20)
                     }
                 }
             }
@@ -136,12 +135,15 @@ struct AnswerView: View {
                     Spacer()
                     Text(todayAnsweredQuestion.answer?.answerDetail ?? "답변이 없습니다")
                         .font(.title3)
-                        .foregroundColor(.textBlack)
-                        .multilineTextAlignment(.center)
+//<<<<<<< HEAD
+//                        .foregroundColor(.textBlack)
+//                        .multilineTextAlignment(.center)
+//=======
+                        .foregroundColor(.textColor)
+//>>>>>>> 67208d27e3df7887f3c91de5551db02c5c4e391b
                     Spacer()
                 }
             }
-            
         }
     }
 }
