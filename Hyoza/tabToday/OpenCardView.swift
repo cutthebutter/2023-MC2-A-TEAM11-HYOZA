@@ -61,6 +61,7 @@ struct NoAnswerView: View {
                         .font(.title)
                         .foregroundColor(.textBlack)
                         .bold()
+                        .multilineTextAlignment(.center)
                     Spacer()
                     NavigationLink {
                         QnAView(data: selectedQuestion, isEditing: true)
@@ -89,7 +90,7 @@ struct AnswerView: View {
     
     var body: some View {
         if let todayAnsweredQuestion = todayAnsweredQuestion {
-                VStack{
+            VStack{
                     HStack {
                         CapsuleView(content: {
                             Text(todayAnsweredQuestion.difficultyString)
@@ -110,10 +111,12 @@ struct AnswerView: View {
                         .font(.title)
                         .foregroundColor(.textBlack)
                         .bold()
+                        .multilineTextAlignment(.center)
                     Spacer()
                     Text(todayAnsweredQuestion.answer?.answerDetail ?? "답변이 없습니다")
                         .font(.title3)
                         .foregroundColor(.textBlack)
+                        .multilineTextAlignment(.center)
                     Spacer()
                 }
         }
