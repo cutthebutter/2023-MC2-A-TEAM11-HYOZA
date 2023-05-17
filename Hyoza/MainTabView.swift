@@ -43,9 +43,11 @@ struct MainTabView: View {
                 .tag(2)
         }
         .onAppear {
+            print("하트 아이콘 텍스트입니다 : \(continueText)")
             selectedQuestion = PersistenceController.shared.selectedQuestion
             
             setAttendance()
+            setContinueText()
             
             if !isContinueIconAnimating {
                 self.isContinueIconAnimating = true
@@ -59,6 +61,7 @@ struct MainTabView: View {
         }
         .onReceive(publisher) { output in
             setAttendance()
+            print("출석일자 변경시 텍스트: \(continueText)")
         }
     }
     
@@ -72,6 +75,18 @@ struct MainTabView: View {
     private func setAttendance() {
         continuousDayCount = AttendanceManager().isAttending ? AttendanceManager().getAttendanceDay() : 0
         
+//        switch continuousDayCount {
+//        case 0:
+//            tempTextStorage = "작성을 시작해보세요!"
+//        case 1...:
+//            tempTextStorage = "연속 작성 \(continuousDayCount)일째 돌파!"
+//        default:
+//            tempTextStorage = "무언가 잘못됐어요 :("
+//        }
+//        continueText = tempTextStorage
+    }
+    
+    private func setContinueText() {
         switch continuousDayCount {
         case 0:
             tempTextStorage = "작성을 시작해보세요!"
