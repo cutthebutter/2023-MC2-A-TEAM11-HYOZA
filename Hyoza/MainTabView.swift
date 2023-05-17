@@ -43,7 +43,6 @@ struct MainTabView: View {
                 .tag(2)
         }
         .onAppear {
-            print("하트 아이콘 텍스트입니다 : \(continueText)")
             selectedQuestion = PersistenceController.shared.selectedQuestion
             
             setAttendance()
@@ -63,8 +62,6 @@ struct MainTabView: View {
         .onReceive(publisher) { output in
             setAttendance()
             setTempText()
-            print("출석일자 변경시 텍스트: \(continueText)")
-//            continueText =
         }
     }
     

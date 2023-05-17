@@ -104,54 +104,23 @@ struct AnswerView: View {
     
     var body: some View {
         if let todayAnsweredQuestion = todayAnsweredQuestion {
-//<<<<<<< HEAD
-//            VStack{
-//                    HStack {
-//                        CapsuleView(content: {
-//                            Text(todayAnsweredQuestion.difficultyString)
-//                                .font(.footnote)
-//                                .foregroundColor(.textOrange)
-//                                .padding([.leading, .trailing], 12)
-//                                .padding([.top, .bottom], 4)
-//                        }, capsuleColor: .backGroundLightOrange)
-//                        Spacer()
-//                        Text(Date().fullString)
-//                            .font(.footnote)
-//                            .foregroundColor(.tapBarDarkGray)
-//                        Spacer()
-//                        ShareButtonView(content: AnyView(self))
-//                    }
-//=======
             NavigationLink {
                 QnAView(data: todayAnsweredQuestion, isEditing: false)
             } label: {
                 VStack{
-//<<<<<<< HEAD
-//                    OpenCardTitleView(difficulty: todayAnsweredQuestion.difficultyString)
-////>>>>>>> f2fdf9c4124d76bdb836d8271ff8dc57e3aaf789
-//=======
                     OpenCardTitleView(difficulty: todayAnsweredQuestion.difficultyString,
                                       targetView: self)
-//>>>>>>> 6aecae32a14c99b05163ae2fb2b8c9e2584ed665
                     Spacer()
                     Text(todayAnsweredQuestion.wrappedQuestion)
                         .font(.title)
                         .foregroundColor(.textColor)
                         .bold()
                         .multilineTextAlignment(.center)
-//<<<<<<< HEAD
-//=======
                         .padding(.horizontal, 5)
-//>>>>>>> f2fdf9c4124d76bdb836d8271ff8dc57e3aaf789
                     Spacer()
                     Text(todayAnsweredQuestion.answer?.answerDetail ?? "답변이 없습니다")
                         .font(.title3)
-//<<<<<<< HEAD
-//                        .foregroundColor(.textBlack)
-//                        .multilineTextAlignment(.center)
-//=======
                         .foregroundColor(.textColor)
-//>>>>>>> 67208d27e3df7887f3c91de5551db02c5c4e391b
                     Spacer()
                 }
             }
