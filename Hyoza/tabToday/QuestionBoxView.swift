@@ -17,38 +17,55 @@ struct QuestionBoxView: View {
     
     var body: some View {
         VStack {
-                Text("오늘의 질문 꾸러미")
-                    .font(.title)
-                    .bold()
-                    .foregroundColor(.textColor)
-                    .padding(.top, 30)
-                Button {
 //<<<<<<< HEAD
-//                    easyQuestions = persistenceController.filteredQuestion(which: .isNotChoosenAndEasy)
-//                    hardQuestions = persistenceController.filteredQuestion(which: .isNotChoosenAndHard)
-//                    self.isQuestionBoxViewTapped.toggle()
+//                Text("오늘의 질문 꾸러미")
+//                    .font(.title)
+//                    .bold()
+//                    .foregroundColor(.textColor)
+//                    .padding(.top, 30)
+//                Button {
+////<<<<<<< HEAD
+////                    easyQuestions = persistenceController.filteredQuestion(which: .isNotChoosenAndEasy)
+////                    hardQuestions = persistenceController.filteredQuestion(which: .isNotChoosenAndHard)
+////                    self.isQuestionBoxViewTapped.toggle()
+////=======
+//                   openQuestions()
+////>>>>>>> 67208d27e3df7887f3c91de5551db02c5c4e391b
+//                } label: {
+//                    Image("questionBoxImage")
+//                        .resizable()
+//                        .scaledToFit()
+//                        .foregroundColor(.capsuleColor)
+//                        .padding(30)
+//                }
 //=======
-                   openQuestions()
-//>>>>>>> 67208d27e3df7887f3c91de5551db02c5c4e391b
-                } label: {
-                    Image("questionBoxImage")
-                        .resizable()
-                        .scaledToFit()
-                        .foregroundColor(.capsuleColor)
-                        .padding(30)
-                }
+            Text("오늘의 질문 꾸러미")
+                .font(.title)
+                .bold()
+                .foregroundColor(.textColor)
+                .padding(.top, 30)
+            Button {
+                openQuestions()
+            } label: {
+                Image("questionBoxImage")
+                    .resizable()
+                    .scaledToFit()
+                    .foregroundColor(.capsuleColor)
+                    .padding(30)
+            }
+//>>>>>>> 6aecae32a14c99b05163ae2fb2b8c9e2584ed665
             ButtonView(content: "열어보기") {
                 openQuestions()
             }
-                    .padding(.horizontal, 20)
-                    .padding(.bottom, 20)
-            }
-            .frame(height: UIScreen.screenHeight * 0.6)
+            .padding(.horizontal, 20)
+            .padding(.bottom, 20)
+        }
+        .frame(height: UIScreen.screenHeight * 0.6)
     }
     
     func openQuestions() -> Void {
-        easyQuestions = persistenceController.filteredQuestion(which: .isNotChoosenAndEasy)
-        hardQuestions = persistenceController.filteredQuestion(which: .isNotChoosenAndHard)
+        easyQuestions = persistenceController.easyQuestions
+        hardQuestions = persistenceController.hardQuestions
         self.isQuestionBoxViewTapped.toggle()
     }
 }

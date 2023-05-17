@@ -21,6 +21,10 @@ struct OpenCardView: View {
             if todayAnsweredQuestion != nil {
                 AnswerView(todayAnsweredQuestion: $todayAnsweredQuestion)
                     .rotation3DEffect(Angle(degrees: degree), axis: (0, 1, 0))
+                    .onAppear() {
+                        _ = AttendanceManager().updateAttendance()
+                        NotificationCenter.default.post(name: AttendanceManager.notificationAttendanceUpdate, object: nil)
+                    }
             } else {
                 NoAnswerView(selectedQuestion: $selectedQuestion)
                     .rotation3DEffect(Angle(degrees: degree), axis: (0, 1, 0))
@@ -41,7 +45,8 @@ struct NoAnswerView: View {
         if let selectedQuestion = selectedQuestion {
             GeometryReader { geo in
                 VStack{
-                    OpenCardTitleView(difficulty: selectedQuestion.difficultyString)
+                    OpenCardTitleView(difficulty: selectedQuestion.difficultyString,
+                                      targetView: self)
                     Spacer()
                     Text(selectedQuestion.wrappedQuestion)
                         .font(.title)
@@ -69,6 +74,7 @@ struct OpenCardTitleView: View {
     let difficulty: String
     let horizontalPadding: CGFloat = 10
     let topPadding: CGFloat = 10
+    let targetView: any View
     
     var body: some View {
         ZStack {
@@ -76,7 +82,7 @@ struct OpenCardTitleView: View {
                 DifficultyCapsuleView(difficulty: difficulty)
                     .padding(.leading, horizontalPadding)
                 Spacer()
-                ShareButtonView(content: AnyView(self))
+                ShareButtonView(content: AnyView(targetView))
                     .padding(.trailing, horizontalPadding)
             }
             HStack {
@@ -120,8 +126,13 @@ struct AnswerView: View {
                 QnAView(data: todayAnsweredQuestion, isEditing: false)
             } label: {
                 VStack{
-                    OpenCardTitleView(difficulty: todayAnsweredQuestion.difficultyString)
-//>>>>>>> f2fdf9c4124d76bdb836d8271ff8dc57e3aaf789
+//<<<<<<< HEAD
+//                    OpenCardTitleView(difficulty: todayAnsweredQuestion.difficultyString)
+////>>>>>>> f2fdf9c4124d76bdb836d8271ff8dc57e3aaf789
+//=======
+                    OpenCardTitleView(difficulty: todayAnsweredQuestion.difficultyString,
+                                      targetView: self)
+//>>>>>>> 6aecae32a14c99b05163ae2fb2b8c9e2584ed665
                     Spacer()
                     Text(todayAnsweredQuestion.wrappedQuestion)
                         .font(.title)
